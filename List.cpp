@@ -280,3 +280,28 @@ int List::_Josephus(Nptr &Ptr, int total, int k)
     // Return the survivor index
     return Ptr->data;
 }
+
+void List::reverse()
+{
+    _reverse(head->next);
+}
+
+void List::_reverse(Nptr Ptr)
+{
+    int count = 0;
+    Nptr next;
+    Nptr last = head;
+    while (count <= length)
+    {
+        next = Ptr->next;
+        Ptr->next = last;
+        last = Ptr;
+        Ptr = next;
+        ++count;
+    }
+
+    delete next;
+    delete last;
+
+    head = head->next;
+}
